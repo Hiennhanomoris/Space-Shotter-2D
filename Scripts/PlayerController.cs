@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     new Rigidbody2D rigidbody;
     public Boundary boundary;
+    public Transform firePoint;
+    public GameObject bullet;
+    [SerializeField] float fireRate;
+    private float nextFire;
 
     void Awake()
     {
@@ -29,6 +33,16 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         HandleMovement();
+        Fire();
+    }
+
+    void Fire()
+    {
+        if(Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(bullet, firePoint.position, Quaternion.identity);
+        }
     }
 
     void HandleMovement()
