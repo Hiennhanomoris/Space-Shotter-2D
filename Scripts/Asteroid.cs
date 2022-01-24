@@ -26,7 +26,6 @@ public class Asteroid : MonoBehaviour
     {
         if(!other.gameObject.CompareTag("background"))
         {
-            Destroy(this.gameObject);
             Destroy(other.gameObject);
         }
     }

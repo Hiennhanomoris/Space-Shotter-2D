@@ -62,4 +62,14 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(rigidbody.position.y, boundary.yMin, boundary.yMax)
         );
     }
+
+    //xu ly va cham
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        // khi cham vao cac vat the asteroid, enemy
+        if(!other.gameObject.CompareTag("background") && !other.gameObject.CompareTag("player_bullet"))
+        {
+            Destroy(other.gameObject);
+        }    
+    }
 }

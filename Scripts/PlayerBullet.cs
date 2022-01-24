@@ -16,4 +16,13 @@ public class PlayerBullet : MonoBehaviour
     {
         this.transform.Translate(Vector2.up * playerBulletSpeed );
     }
+
+    //pha huy cac vat the va cham vao no
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(!other.gameObject.CompareTag("background") && !other.gameObject.CompareTag("player"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
