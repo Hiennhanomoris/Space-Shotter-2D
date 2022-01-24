@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public abstract class Asteroid : MonoBehaviour
 {
     [SerializeField] private float asteroidSpeed;
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class Asteroid : MonoBehaviour
         move();     
     }
 
-    void move()
+    public void move()
     {
         this.transform.Translate(Vector2.down * asteroidSpeed);  
     }
