@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    [SerializeField] private float enemyBulletSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
 
     public void Move()
     {
-        this.transform.Translate(Vector2.down);
+        this.transform.Translate(Vector2.down * enemyBulletSpeed);
     }
 
     public void OntriggerEnter2D(Collider2D other)
