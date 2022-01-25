@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     [SerializeField] private float playerBulletSpeed; 
+    private GameObject gameController;
+
+    public void Awake()
+    {
+        gameController = GameObject.FindGameObjectWithTag("game_controller");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +28,10 @@ public class PlayerBullet : MonoBehaviour
     {
         if(!other.gameObject.CompareTag("background") && !other.gameObject.CompareTag("player"))
         {
+            if(other.gameObject.CompareTag("asteroid1") || other.gameObject.CompareTag("enemy1"))
+            {
+                gameController.GetComponent<GameController>().IncreScore(1);
+            } 
             Destroy(other.gameObject);
         }
     }
