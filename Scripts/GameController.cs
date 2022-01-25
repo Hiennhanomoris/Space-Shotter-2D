@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private GameObject enemy1;
-    private GameObject asteroid1;
+    public GameObject enemy1;
+    public GameObject asteroid1;
     [SerializeField] private float timeWait;
     [SerializeField] private int numOfasteroid;
     [SerializeField] private Vector3 pos;
@@ -14,8 +14,11 @@ public class GameController : MonoBehaviour
     public void Awake() 
     {
         score = 0;
-        enemy1 = GameObject.FindGameObjectWithTag("enemy1");
-        asteroid1 = GameObject.FindGameObjectWithTag("asteroid1");    
+        if(enemy1 == null || asteroid1 == null)
+        {
+            enemy1 = GameObject.FindGameObjectWithTag("enemy1");
+            asteroid1 = GameObject.FindGameObjectWithTag("asteroid1");  
+        }  
     }
 
     // Start is called before the first frame update
