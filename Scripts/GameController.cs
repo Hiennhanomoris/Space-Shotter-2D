@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     public void Awake() 
     {
-        if(Instance != this)
+        if(Instance != null && Instance != this)
         {
             Instance = this;
         }
