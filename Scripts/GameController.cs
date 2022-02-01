@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
     public GameObject enemy1;
     public GameObject asteroid1;
     [SerializeField] private float timeWait;
@@ -13,6 +14,10 @@ public class GameController : MonoBehaviour
 
     public void Awake() 
     {
+        if(Instance != this)
+        {
+            Instance = this;
+        }
         score = 0;
         if(enemy1 == null || asteroid1 == null)
         {
