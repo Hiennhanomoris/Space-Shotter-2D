@@ -22,7 +22,7 @@ public class EnemyBullet : MonoBehaviour
         this.transform.Translate(Vector2.down * enemyBulletSpeed);
     }
 
-    public void OntriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.CompareTag("player"))
         {

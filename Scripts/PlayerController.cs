@@ -10,6 +10,8 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerStatus player_status;
+    [SerializeField] private EnemyStatus enemy_status;
     [SerializeField] private float moveSpeed;
     new Rigidbody2D rigidbody;
     public Boundary boundary;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        player_status.current_health = player_status.max_health;
     }
 
     // Start is called before the first frame update
@@ -69,7 +72,14 @@ public class PlayerController : MonoBehaviour
         // khi cham vao cac vat the asteroid, enemy
         if(!other.gameObject.CompareTag("background") && !other.gameObject.CompareTag("player_bullet"))
         {
-            Destroy(other.gameObject);
+            if(other.gameObject.CompareTag("enemy_bullet"))
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                // tru mau cua vat the
+            }
         }    
     }
 }

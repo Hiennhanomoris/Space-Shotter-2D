@@ -14,11 +14,14 @@ public class GameController : MonoBehaviour
 
     public void Awake() 
     {
+        //code for singleton
         if(Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(this);
+            return;
         }
-        score = 0;
+        Instance = this;
+
         if(enemy1 == null || asteroid1 == null)
         {
             enemy1 = GameObject.FindGameObjectWithTag("enemy1");
