@@ -11,10 +11,15 @@ public abstract class Enemy : MonoBehaviour
     private int direct = 1;
     private float nextFire;
 
-    // Start is called before the first frame update
-    void Start()
+    //chi so
+    public int max_health;
+    public int current_health;
+    public int damage;
+    public int point;
+
+    public virtual void Awake() 
     {
-        
+        current_health = max_health;    
     }
 
     // Update is called once per frame
@@ -24,7 +29,7 @@ public abstract class Enemy : MonoBehaviour
         Fire();
     }
 
-    void Fire()
+    public virtual void Fire()
     {
         if(Time.time > nextFire)
         {
@@ -36,7 +41,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void move()
+    public virtual void move()
     {
         //di chuiyen theo Oy
         this.transform.Translate(Vector2.down * enemySpeed);
@@ -45,7 +50,7 @@ public abstract class Enemy : MonoBehaviour
         this.transform.Translate(Vector2.right * direct * 0.08f);
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("player_bullet"))
         {
@@ -55,5 +60,17 @@ public abstract class Enemy : MonoBehaviour
         {
             PlayerController.Instance.TakeHealth(10);
         }   
+    }
+
+    public virtual void TakeHealth(int amount)
+    {
+        if(this.current_health > amount)
+        {
+            this.current_health -= amount;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

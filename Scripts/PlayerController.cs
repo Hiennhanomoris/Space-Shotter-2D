@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     [SerializeField] private PlayerStatus player_status;
-    [SerializeField] private EnemyStatus enemy_status;
     [SerializeField] private float moveSpeed;
     new Rigidbody2D rigidbody;
     public Boundary boundary;
@@ -87,7 +86,17 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                //tru mau cua vat the
+                if(other.gameObject.CompareTag("enemy1"))
+                {
+                    if(player_status.damage >= other.gameObject.GetComponent<Enemy>().current_health)
+                    {
+                        Destroy(other.gameObject);
+                    }
+                    else
+                    {
+                        other.gameObject.GetComponent<Enemy>().current_health -= player_status.damage;
+                    }
+                }
             }
         }    
     }
@@ -102,5 +111,10 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public int GetDamage()
+    {
+        return player_status.damage;
     }
 }

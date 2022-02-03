@@ -27,11 +27,24 @@ public class PlayerBullet : MonoBehaviour
     {
         if(!other.gameObject.CompareTag("background") && !other.gameObject.CompareTag("player"))
         {
-            if(other.gameObject.CompareTag("asteroid1") || other.gameObject.CompareTag("enemy1"))
+            if(other.gameObject.CompareTag("enemy_bullet"))
             {
-                GameController.Instance.IncreScore(1);
-            } 
-            Destroy(other.gameObject);
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                if(other.gameObject.CompareTag("enemy1"))
+                {
+                    if(PlayerController.Instance.GetDamage() >= other.gameObject.GetComponent<Enemy>().current_health)
+                    {
+                        Destroy(other.gameObject);
+                    }
+                    else
+                    {
+                        other.gameObject.GetComponent<Enemy>().current_health -= PlayerController.Instance.GetDamage();
+                    }
+                }
+            }
         }
     }
 }
