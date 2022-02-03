@@ -26,7 +26,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if(other.gameObject.CompareTag("player"))
         {
-            Destroy(other.gameObject);
+            PlayerController.Instance.TakeHealth(10);
         }
     }
 }

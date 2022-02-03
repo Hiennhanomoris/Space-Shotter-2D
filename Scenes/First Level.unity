@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2626f02bc651748aa25f37f15e4faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_status: {fileID: 11400000, guid: c9d7c1c136f4bb94689ed4486ae72b87, type: 2}
+  enemy_status: {fileID: 11400000, guid: 0fcc291bcdd807e49b2e29cee8971864, type: 2}
   moveSpeed: 10
   boundary:
     xMin: -9

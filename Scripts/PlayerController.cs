@@ -10,6 +10,7 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     [SerializeField] private PlayerStatus player_status;
     [SerializeField] private EnemyStatus enemy_status;
     [SerializeField] private float moveSpeed;
@@ -22,6 +23,14 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        //for singleton 
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+
         rigidbody = GetComponent<Rigidbody2D>();
         player_status.current_health = player_status.max_health;
     }
@@ -78,8 +87,20 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // tru mau cua vat the
+                //tru mau cua vat the
             }
         }    
+    }
+
+    public void TakeHealth(int amount)
+    {
+        if(player_status.current_health > amount)
+        {
+            player_status.current_health -= amount;
+        }
+        else 
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

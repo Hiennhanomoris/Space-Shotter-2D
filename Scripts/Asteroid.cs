@@ -24,9 +24,13 @@ public abstract class Asteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.CompareTag("player") || other.gameObject.CompareTag("player_bullet"))
+        if(other.gameObject.CompareTag("player_bullet"))
         {
             Destroy(other.gameObject);
-        }
+        } 
+        if(other.gameObject.CompareTag("player"))
+        {
+            PlayerController.Instance.TakeHealth(10);
+        }   
     }
 }
